@@ -9,7 +9,7 @@
         ])
         .run(run);
 
-    agular
+    angular
         .module('thinkster.config', []);
 
     angular
