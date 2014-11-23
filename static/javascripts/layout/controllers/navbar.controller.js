@@ -10,6 +10,8 @@
     function NavbarController($scope, Authentication){
         var vm = this;
 
+        $scope.vm = vm;
+
         vm.logout = logout;
 
         function logout(){
