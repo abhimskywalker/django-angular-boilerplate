@@ -9,7 +9,8 @@
 
     function Authentication($cookies, $http){
         var Authentication = {
-            register: register
+            register: register,
+            login: login,
         };
 
         return Authentication;
@@ -21,6 +22,13 @@
                 email: email
             });
         }
+
+        function login(email, password){
+            return $http.post('/api/v1/auth/login/', {
+                email: email, password: password
+            }).then(loginSuccessFn, loginErrorFn);
+        }
+
     }
 
 })();
