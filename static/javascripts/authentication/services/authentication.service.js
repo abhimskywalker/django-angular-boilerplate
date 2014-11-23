@@ -11,6 +11,7 @@
         var Authentication = {
             register: register,
             login: login,
+            logout: logout,
             setAuthenticatedAccount: setAuthenticatedAccount,
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
@@ -32,7 +33,7 @@
         }
 
         function registerErrorFn(data, status, headers, config){
-            console.log("Registration Failure!");
+            console.error("Registration Failure!");
         }
 
         function login(email, password){
@@ -48,8 +49,23 @@
         }
 
         function loginErrorFn(data, status, headers, config){
-            console.log('Login Failure!');
+            console.error('Login Failure!');
             return data;
+        }
+
+        function logout(){
+            return $http.post("/api/v1/auth/logout/")
+                .then(logoutSuccessFn, logoutErrorFn);
+        }
+
+        function logoutSuccessFn(data, status, headers, config){
+            Authentication.unauthenticate();
+
+            window.location = "/";
+        }
+
+        function logoutErrorFn(data, status, headers, config){
+            console.error("Logout Failure!");
         }
 
         function setAuthenticatedAccount(account){
