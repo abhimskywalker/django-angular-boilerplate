@@ -19,3 +19,14 @@ class PostViewSet(viewsets.ModelViewSet):
         obj.author = self.request.user
 
         return super(PostViewSet, self).pre_save(obj)
+
+
+class AccountPostsViewSet(viewsets.ViewSet):
+    queryset = Post.objects.select_related('author').all()
+    serializer_class = PostSerializer
+
+    def list(self, request, account_username=None):
+        queryset = self.queryset.filter(author__username=account_username)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)
