@@ -24,7 +24,15 @@
                 username: username,
                 password: password,
                 email: email
-            });
+            }).then(registerSuccessFn, registerErrorFn);
+        }
+
+        function registerSuccessFn(data, status, headers, config){
+            Authentication.login(data.email, data.password);
+        }
+
+        function registerErrorFn(data, status, headers, config){
+            console.log("Registration Failure!");
         }
 
         function login(email, password){
