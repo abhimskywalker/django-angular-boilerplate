@@ -11,6 +11,10 @@
         var Authentication = {
             register: register,
             login: login,
+            setAuthenticatedAccount: setAuthenticatedAccount,
+            getAuthenticatedAccount: getAuthenticatedAccount,
+            isAuthenticated: isAuthenticated,
+            unauthenticate: unauthenticate
         };
 
         return Authentication;
@@ -29,6 +33,24 @@
             }).then(loginSuccessFn, loginErrorFn);
         }
 
+        function setAuthenticatedAccount(account){
+            $cookies.authenticatedAccount = JSON.stringify(account);
+        }
+
+        function getAuthenticatedAccount(){
+            if (!$cookies.authenticatedAccount){
+                return;
+            }
+            return JSON.parse($cookies.authenticatedAccount);
+        }
+
+        function isAuthenticated(){
+            return !!$cookies.authenticatedAccount;
+        }
+
+        function unauthenticate(){
+            delete $cookies.authenticatedAccount;
+        }
     }
 
 })();
