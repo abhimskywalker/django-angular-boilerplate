@@ -17,11 +17,11 @@
         return Posts
 
         function all(){
-            return $http.get('/api/v1/posts');
+            return $http.get('/api/v1/posts/');
         }
 
         function create(content){
-            return $http.post('/api/v1/posts', {
+            return $http.post('/api/v1/posts/', {
                 content: content
             });
         }

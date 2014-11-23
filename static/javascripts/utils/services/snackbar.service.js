@@ -63,4 +63,4 @@
       _snackbar(content, options);
     }
   }
-})($, _);
+})();

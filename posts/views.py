@@ -12,8 +12,8 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
-            return (permissions.AllowAny, )
-        return (permissions.IsAuthenticated, IsAuthorOfPost)
+            return (permissions.AllowAny(), )
+        return (permissions.IsAuthenticated(), IsAuthorOfPost)
 
     def pre_save(self, obj):
         obj.author = self.request.user
