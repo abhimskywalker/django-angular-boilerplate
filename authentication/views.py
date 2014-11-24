@@ -22,7 +22,7 @@ class AccountViewSet(viewsets.ModelViewSet):
         if self.request.method == 'POST':
             return (permissions.AllowAny(),)
 
-        return (permissions.IsAuthenticated, IsAccountOwner(),)
+        return (permissions.IsAuthenticated(), IsAccountOwner(),)
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.DATA)
