@@ -5,9 +5,9 @@
         .module("thinkster.authentication.services")
         .factory("Authentication", Authentication);
 
-    Authentication.$inject = ["$cookies", "$http"];
+    Authentication.$inject = ["$cookies", "$http", '$location'];
 
-    function Authentication($cookies, $http){
+    function Authentication($cookies, $http, $location){
         var Authentication = {
             register: register,
             login: login,
@@ -29,7 +29,8 @@
         }
 
         function registerSuccessFn(data, status, headers, config){
-            Authentication.login(data.email, data.password);
+//            Authentication.login(data.email, data.password);
+            $location.path('/login/');
         }
 
         function registerErrorFn(data, status, headers, config){
